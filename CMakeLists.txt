@@ -35,3 +35,8 @@ target_link_options(Checkers PRIVATE
         -static-libstdc++
         -static
 )
+add_custom_command(TARGET Checkers POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_BINARY_DIR}/_deps/sfml-src/extlibs/bin/x64/openal32.dll"
+        "$<TARGET_FILE_DIR:Checkers>/openal32.dll"
+)
